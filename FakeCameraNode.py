@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import math, os
 
 from PIL import Image
@@ -36,7 +37,7 @@ class FakeCameraNode:
 
 
         fx, fy = left.width/tan(FOV/2), left.height/tan(FOV/2)
-        cx, cy = left.width, left.height
+        cx, cy = left.width/2, left.height/2
         
         ROSLeft.header = header_left
         ROSLeft.width = left.width

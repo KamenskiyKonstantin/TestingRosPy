@@ -8,3 +8,8 @@ class Receiver:
         step = msg.point_step
         points = [data[i:i+step] for i in range(0, len(data), step)]
         rospy.loginfo(f"fMessage with time {msg.header.stamp} reported f{points}")
+
+
+if __name__ == '__main__':
+    rospy.init_node('fake_camera')
+    node = Receiver()
