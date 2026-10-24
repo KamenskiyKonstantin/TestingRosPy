@@ -42,7 +42,7 @@ class FakeCameraNode:
         ROSLeft.header = header_left
         ROSLeft.width = left.width
         ROSLeft.height = left.height
-        ROSLeft.step = left.width*3
+        ROSLeft.step = left.width
         ROSLeft.encoding='rgb8'
         ROSLeft.is_bigendian=False
         ROSLeft.data = left.tobytes()
@@ -55,7 +55,7 @@ class FakeCameraNode:
         ROSRight.header = header_right
         ROSRight.width = right.width
         ROSRight.height = right.height
-        ROSRight.step = right.width * 3
+        ROSRight.step = right.width
         ROSRight.encoding = 'rgb8'
         ROSRight.is_bigendian = False
         ROSRight.data = right.tobytes()
