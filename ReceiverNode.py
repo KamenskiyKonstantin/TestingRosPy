@@ -28,18 +28,20 @@ class Parser:
         PointField.FLOAT64: 'd'
     }
 
-    def __init__(self, fields: list[PointField], is_bigendian: bool):
+    def __init__(self, fields, is_bigendian: bool):
         self._endianness = ">" if is_bigendian else "<"
         self._fields = fields
-    def parse(self, points: list[bytes]):
+    def parse(self, points):
         res = []
         for point in points:
             res.append(self.parse_point(point))
+        return res
     def parse_point(self, point: bytes):
         result = dict()
 
         def recover(data: bytes, cur_field):
-            return struct.unpack(self._endianness + self.BYTES_RECOVERY_FUNCTION[cur_field.datatype], bytes)
+#            print(data)
+            return struct.unpack(self._endianness + self.BYTES_RECOVERY_FUNCTION[cur_field.datatype], data)
         for field in self._fields:
             if field.count != 1:
                 rospy.logwarn(f"Field {field.name} has more than 1 count, this is not implemented")
@@ -62,6 +64,7 @@ class Receiver:
         points = [data[i:i+step] for i in range(0, len(data), step)]
         rospy.loginfo(f"fMessage with time {msg.header.stamp} reported f{len(points)} points found")
         parsed_points = parser.parse(points)
+        rospy.loginfo(f"Parsed points: {parsed_points}")
         with open("out.txt", "w") as file:
             print(parsed_points, file = file)
 
