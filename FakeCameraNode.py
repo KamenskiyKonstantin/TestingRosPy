@@ -6,7 +6,6 @@ from std_msgs.msg import Header
 from sensor_msgs.msg import Image as ROSImage, CameraInfo
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Pose, PoseWithCovariance, Twist, TwistWithCovariance, Point, Quaternion, Vector3
-
 from math import tan
 import rospy
 
@@ -18,11 +17,11 @@ right = Image.open(os.path.join(script_dir, "right.png"))
 
 class FakeCameraNode:
     def __init__(self):
-        self._left_img_pub = rospy.Publisher('left/image_rect', ROSImage, queue_size=10)
-        self._left_ci_pub = rospy.Publisher('left/camera_info', CameraInfo, queue_size=10)
-        self._right_img_pub = rospy.Publisher('right/image_rect', ROSImage, queue_size=10)
-        self._right_ci_pub = rospy.Publisher('right/camera_info', CameraInfo, queue_size=10)
-        self._odom_pub = rospy.Publisher('/odom', Odometry, queue_size=10)
+            self._left_img_pub = rospy.Publisher('left/image_rect', ROSImage, queue_size=10)
+            self._left_ci_pub = rospy.Publisher('left/camera_info', CameraInfo, queue_size=10)
+            self._right_img_pub = rospy.Publisher('right/image_rect', ROSImage, queue_size=10)
+            self._right_ci_pub = rospy.Publisher('right/camera_info', CameraInfo, queue_size=10)
+            self._odom_pub = rospy.Publisher('/odom', Odometry, queue_size=10)
 
 
     def generate_bogus_message(self):
